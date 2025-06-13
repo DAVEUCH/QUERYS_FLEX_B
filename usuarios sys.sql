@@ -1,0 +1,1 @@
+select*from dbo.GC_M_Usuario order by vc_Usuario asc

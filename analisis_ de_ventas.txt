@@ -1,0 +1,12 @@
+1. usv_AnalisisVentas_Sum
+2. usv_AnalisisVentas
+3. usv_ventas_pdvs_sinVincSinVPM 11
+4. usv_ventas_Alquiler 11
+5. usv_ventas_Vinculadas_GCI 11
+6. usv_ventas_Vinculadas_IRC 11
+7. usv_ventas_TercerosVPM 11
+8. usv_ventas_intereses 11
+9. usv_ventas_Anticipos 12
+10. usv_ventas_Obsequios 11
+11. usv_ventasGenerales_asoles---- ya esta
+12. usv_ventasAnticipos_asoles
