@@ -43,8 +43,9 @@ CorrelativoRegistroVentas,CorrelativoRegistroCompras,
 CorrelativoRegistroConsignaciones, EstadoOperacion, CampoLibre
 FROM         dbo.vrpte_LE_LibroDiario2010_001_v2
 WHERE    
-(convert(date,FechaOperacion,103) BETWEEN '2025-02-01' AND '2025-02-28')
+--(convert(date,FechaOperacion,103) BETWEEN '2025-03-01' AND '2025-03-31')
 --and Glosa='Por los gastos de percepcion'
+CodigoOperacion='4-03-2025-0001832'
 GROUP BY Periodo, CodigoPlanCuentas, CodigoCuentaContable, FechaOperacion, EstadoOperacion, CampoLibre, NumeroCorrelativo, Glosa, 
 CorrelativoRegistroVentas, CorrelativoRegistroCompras, CorrelativoRegistroConsignaciones
 ,NumeroCAR
@@ -72,6 +73,25 @@ update Cp set NumCp='01470935' where PKID=2909497
 update Cp set NumCp='0000000013' where PKID=2927518 --0000013
 
 SELECT*FROM CP  where PKID=2927518
+
+---gci
+SELECT     Periodo, 
+CodigoOperacion, 
+NumeroCorrelativo, CodigoPlanCuentas, CodigoCuentaContable, FechaOperacion, Glosa, 
+                      CASE WHEN SUM(CONVERT(decimal(14, 2), Debe)) - SUM(CONVERT(decimal(14, 2), Haber)) > 0 THEN CONVERT(varchar(15), SUM(CONVERT(decimal(14, 2), Debe)) 
+                      - SUM(CONVERT(decimal(14, 2), Haber))) ELSE '0.00' END AS Debe, CASE WHEN SUM(CONVERT(decimal(14, 2), Haber)) - SUM(CONVERT(decimal(14, 2), Debe)) 
+                      > 0 THEN CONVERT(varchar(15), SUM(CONVERT(decimal(14, 2), Haber)) - SUM(CONVERT(decimal(14, 2), Debe))) ELSE '0.00' END AS Haber, CorrelativoRegistroVentas,
+                       CorrelativoRegistroCompras, CorrelativoRegistroConsignaciones, EstadoOperacion, CampoLibre
+FROM         dbo.vrpte_LE_LibroDiario2010_001
+WHERE    IDPeriodo  = @Periodo 
+GROUP BY Periodo, CodigoOperacion, CodigoPlanCuentas, CodigoCuentaContable, FechaOperacion, EstadoOperacion, CampoLibre, NumeroCorrelativo, Glosa, 
+                      CorrelativoRegistroVentas, CorrelativoRegistroCompras, CorrelativoRegistroConsignaciones
+HAVING      (SUM(CONVERT(decimal(14, 2), Debe)) - SUM(CONVERT(decimal(14, 2), Haber)) <> 0)
+ORDER BY CONVERT(date, FechaOperacion), CodigoOperacion
+
+
+
+
 ----------------------------------------------------------------------------
 
 Select 
@@ -93,10 +113,11 @@ Select
 From
  vrpte_LE_LibroMayor2010_001
 Where
- IDPeriodo = 100000494
+ --IDPeriodo = 100000494
+ NumeroCAR='4-03-2025-0001832'
 Group by
  Periodo,
- CodigoOperacion,
+ --CodigoOperacion,
  NumeroCorrelativo,
  CodigoPlanCuentas,
  CodigoCuentaContable,
@@ -106,15 +127,16 @@ Group by
  CorrelativoRegistroCompras,
  CorrelativoRegistroConsignaciones,
  EstadoOperacion,
- --NumeroCAR,
+ NumeroCAR,
  --Cod_tipcom,
  CampoLibre
 Having
  Sum(Convert(decimal(14,2),Debe)) - Sum(Convert(decimal(14,2),Haber)) <> 0
 Order By
  CodigoCuentaContable, 
- CONVERT(date,FechaOperacion), 
- CodigoOperacion
+ CONVERT(date,FechaOperacion)
+ --,CodigoOperacion
+ --)
 select*from Periodo where PKID=100000494
 
 select top 10*from Persona

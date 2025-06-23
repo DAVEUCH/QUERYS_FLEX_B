@@ -1,5 +1,6 @@
 select top 10*from Persona where PKID=10452
 select top 10*from GC_Cliente where IDPersona=10452
+
 SELECT
     CLI.PKID AS Id,
     --PER.Codigo,1643
@@ -8,201 +9,76 @@ SELECT
 	--DIRE.Descripcion,
 	--PER.fechaCrea,
 	--iif(DIRE.DireccionPrincipal=1,'Principal','Secundario') as Tipo_Direc,
-	--GCC.IDPersona as idscore,
-	--GCC.idVendedor,
-	--GCC.Condicion_Contribuyente_SUNAT,
-	--GCC.Estado_Contribuyente_SUNAT
-	GCC.Score
+	GCC.fecUlt_Vta_credito,
+	GCC.fecUlt_Vta_contado,
+	GCC.fecAnt_aUlt_Vta,
+	GCC.fecUlt_Vta,
+	GCC.Estado_Contribuyente_SUNAT
+	--GCC.Score
 FROM Cliente CLI
 LEFT JOIN Persona PER ON PER.PKID = CLI.PKID
 --LEFT JOIN Direccion DIRE ON DIRE.IDPersona=PER.PKID
 left join GC_Cliente GCC on GCC.IDPersona=CLI.PKID
-WHERE PER.DocIdentidad in ( 
-  '20611435801 ',
- '20610295283 ',
- '20609743329 ',
- '10422771994 ',
- '20606698365 ',
- '20606727799 ',
- '20514789160 ',
- '10462959066 ',
- '10214199870 ',
- '10707617158 ',
- '20449272766 ',
- '20603034857 ',
- '20602955894 ',
- '20612642649 ',
- '20601941181 ',
- '20603674317 ',
- '20601449022 ',
- '20455967539 ',
- '20602224083 ',
- '10441009777 ',
- '10415344258 ',
- '10438776261 ',
- '20605095705 ',
- '20608636065 ',
- '10239944111 ',
- '10423140637 ',
- '10439273335 ',
- '20395179901 ',
- '20600792149 ',
- '20113233835 ',
- '20494942896 ',
- '20454902972 ',
- '20477241558 ',
- '20600263359 ',
- '10154327113 ',
- '20441608463 ',
- '10286052059 ',
- '10233760906 ',
- '10482095629 ',
- '20613170945 ',
- '10073136097 ',
- '20539619919 ',
- '20610453105 ',
- '20447718295 ',
- '20602249256 ',
- '20606410116 ',
- '20602132511 ',
- '20372444810 ',
- '10256886648 ',
- '20604813477 ',
- '20558210894 ',
- '20612911186 ',
- '20491865505 ',
- '20552648723 ',
- '10437299507 ',
- '10469971932 ',
- '20602933998 ',
- '20612147087 ',
- '20602700951 ',
- '20609265222 ',
- '20609096056 ',
- '10412281051 ',
- '20508443669 ',
- '10458026888 ',
- '20606372974 ',
- '20611705396 ',
- '10474018828 ',
- '20545110947 ',
- '20607073911 ',
- '20606698365 ',
- '20609325969 ',
- '20549083189 ',
- '20518019113 ',
- '10427246162 ',
- '20610060839 ',
- '20609507129 ',
- '20539785762 ',
- '20610330038 ',
- '20498038426 ',
- '10464480434 ',
- '10406735953 ',
- '20490075667 ',
- '10712324096 ',
- '10086833269 ',
- '10757370579 ',
- '10439273335 ',
- '20556574678 ',
- '20611684101 ',
- '20602429971 ',
- '10482095629 '
+WHERE PER.Codigo in ( 
+ '10450104421 ',
+ '10294047927 ',
+ '10210891701 ',
+ '20505005431 ',
+ '10444673058 ',
+ '10153718577 ',
+ '10005149814 ',
+ '10106465890 ',
+ '10180976715 ',
+ '10427052791 ',
+ '10470352707 ',
+ '10205946034 ',
+ '10193287226 ',
+ '20539819501 ',
+ '10159847565 ',
+ '10293588371 ',
+ '20532355576 ',
+ '20534247169 ',
+ '20494944759 ',
+ '10805601286 ',
+ '20508964391 ',
+ '20450681700 ',
+ '20480192428 ',
+ '20129901111 ',
+ '10419889135 ',
+ '10433431982 '
  ) ORDER BY CASE PER.DocIdentidad 
 
-when  '20611435801 ' then 1
-when  '20610295283 ' then 2
-when  '20609743329 ' then 3
-when  '10422771994 ' then 4
-when  '20606698365 ' then 5
-when  '20606727799 ' then 6
-when  '20514789160 ' then 7
-when  '10462959066 ' then 8
-when  '10214199870 ' then 9
-when  '10707617158 ' then 10
-when  '20449272766 ' then 11
-when  '20603034857 ' then 12
-when  '20602955894 ' then 13
-when  '20612642649 ' then 14
-when  '20601941181 ' then 15
-when  '20603674317 ' then 16
-when  '20601449022 ' then 17
-when  '20455967539 ' then 18
-when  '20602224083 ' then 19
-when  '10441009777 ' then 20
-when  '10415344258 ' then 21
-when  '10438776261 ' then 22
-when  '20605095705 ' then 23
-when  '20608636065 ' then 24
-when  '10239944111 ' then 25
-when  '10423140637 ' then 26
-when  '10439273335 ' then 27
-when  '20395179901 ' then 28
-when  '20600792149 ' then 29
-when  '20113233835 ' then 30
-when  '20494942896 ' then 31
-when  '20454902972 ' then 32
-when  '20477241558 ' then 33
-when  '20600263359 ' then 34
-when  '10154327113 ' then 35
-when  '20441608463 ' then 36
-when  '10286052059 ' then 37
-when  '10233760906 ' then 38
-when  '10482095629 ' then 39
-when  '20613170945 ' then 40
-when  '10073136097 ' then 41
-when  '20539619919 ' then 42
-when  '20610453105 ' then 43
-when  '20447718295 ' then 44
-when  '20602249256 ' then 45
-when  '20606410116 ' then 46
-when  '20602132511 ' then 47
-when  '20372444810 ' then 48
-when  '10256886648 ' then 49
-when  '20604813477 ' then 50
-when  '20558210894 ' then 51
-when  '20612911186 ' then 52
-when  '20491865505 ' then 53
-when  '20552648723 ' then 54
-when  '10437299507 ' then 55
-when  '10469971932 ' then 56
-when  '20602933998 ' then 57
-when  '20612147087 ' then 58
-when  '20602700951 ' then 59
-when  '20609265222 ' then 60
-when  '20609096056 ' then 61
-when  '10412281051 ' then 62
-when  '20508443669 ' then 63
-when  '10458026888 ' then 64
-when  '20606372974 ' then 65
-when  '20611705396 ' then 66
-when  '10474018828 ' then 67
-when  '20545110947 ' then 68
-when  '20607073911 ' then 69
-when  '20606698365 ' then 70
-when  '20609325969 ' then 71
-when  '20549083189 ' then 72
-when  '20518019113 ' then 73
-when  '10427246162 ' then 74
-when  '20610060839 ' then 75
-when  '20609507129 ' then 76
-when  '20539785762 ' then 77
-when  '20610330038 ' then 78
-when  '20498038426 ' then 79
-when  '10464480434 ' then 80
-when  '10406735953 ' then 81
-when  '20490075667 ' then 82
-when  '10712324096 ' then 83
-when  '10086833269 ' then 84
-when  '10757370579 ' then 85
-when  '10439273335 ' then 86
-when  '20556574678 ' then 87
-when  '20611684101 ' then 88
-when  '20602429971 ' then 89
-when  '10482095629 ' then 90
+when  '10450104421 ' then 1
+when  '10294047927 ' then 2
+when  '10210891701 ' then 3
+when  '20505005431 ' then 4
+when  '10444673058 ' then 5
+when  '10153718577 ' then 6
+when  '10005149814 ' then 7
+when  '10106465890 ' then 8
+when  '10180976715 ' then 9
+when  '10427052791 ' then 10
+when  '10470352707 ' then 11
+when  '10205946034 ' then 12
+when  '10193287226 ' then 13
+when  '20539819501 ' then 14
+when  '10159847565 ' then 15
+when  '10293588371 ' then 16
+when  '20532355576 ' then 17
+when  '20534247169 ' then 18
+when  '20494944759 ' then 19
+when  '10805601286 ' then 20
+when  '20508964391 ' then 21
+when  '20450681700 ' then 22
+when  '20480192428 ' then 23
+when  '20129901111 ' then 24
+when  '10419889135 ' then 25
+when  '10433431982 ' then 26
+
 -- Para manejar cualquier caso no listado explícitamente
 END;
 
+update GC_Cliente set fecAnt_aUlt_Vta='23-01-2014',fecUlt_Vta_credito='23-01-2014',fecUlt_Vta='23-01-2014' where IDPersona=812
 --update GC_Cliente set Score=1 WHERE IDPersona=1
  --select * from GC_Cliente where IDPersona=2496
 --Condicion_Contribuyente_SUNAT

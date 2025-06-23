@@ -1,4 +1,4 @@
-delete from Cp where NumCp='R001-0000285' and PKID=844962
+select* from Cp where NumCp='R001-0000285' and PKID=844962
 update Cp set Anulado=1 where NumCp='R001-0000285' and PKID=844962
 --update Cp set Fecha=
 delete from ItemCp where IDCp=844962

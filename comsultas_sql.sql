@@ -147,7 +147,6 @@ select*from ItemProducto where PKID in (
 4809444,
 4809445)
 
-
 select*from itemcp where IDCp=813024
 select*from ItemProducto where PKID in (
 4809399,
@@ -214,16 +213,21 @@ cpo.Descripcion,
 cpv.ValorAfecto,
 cpv.ValorInafecto,
 cpv.ValorVenta,
-cpv.SubTotal
+cpv.SubTotal,
+cpp.Credito
 from CpVenta cpven
 INNER join cp cpv  on cpv.PKID=cpven.PKID
 INNER join Persona per on per.PKID= cpv.IDPersona
 left join Empleado emp on emp.PKID=PER.PKID
 left join TipoCp tcpv on tcpv.PKID=cpv.IDTipoCp
 left join CptoOperacion cpo on cpo.PKID=cpv.IDCptoOperacion
---where PER.Codigo='20602249256'
+left join CpCobrarPagar cpp on cpp.PKID=cpven.PKID
+where PER.Codigo in ( '10444673058')
+
+-- Para manejar cualquier caso no listado explícitamente
+END;
 --where tcpv.Codigo='FVC07'
-where cpv.NumCp='F001-0025564'
+--where cpv.NumCp='F001-0025564'
 AND cpv.PKID=810179
 order by cpV.FechaEmision
 
@@ -304,7 +308,17 @@ left join notadebito ND on ND.PKID=cpv.PKID
 left join CpInventarioSalida invsa on invsa.PKID=cpv.PKID
 --LEFT JOIN CpVenta cpven on cpven.PKID=cpv.PKID
 where
-cpv.NumCp in ('T007-00000805','T007-00000806')
+cpv.NumCp in ('T001-00008528','T001-00008531','T001-00008532')
+SELECT*FROM Persona WHERE Codigo='10469233346'
+select*from Cp where PKID=850502
+select*from CpInventarioSalida where PKID=850502
+update CpInventarioSalida set IDDireccionEntrega=6509 where PKID=850502
+update CpInventarioSalida set DireccionEntrega='AV. LUNA PIZARRO NRO. 627 - 629' where PKID=850502
+
+select*from CpInventarioSalida where PKID=850473
+select*from CpInventarioSalida where PKID=850502
+
+select *from Direccion where IDPersona=10719
 
 select*from Distrito where Descripcion='SANTIAGO DE SURCO'
 select*from Provincia where Descripcion='LIMA'
