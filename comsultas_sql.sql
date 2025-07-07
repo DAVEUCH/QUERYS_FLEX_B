@@ -121,7 +121,12 @@ select*from Producto
 
 select*from CpVenta
 select*from Cliente
-select*from Persona where PKID=2972
+select*from Persona where Codigo='20611962046'
+update Persona SET Nombre='CORPORACIÓN D RIVAS S.A.C.' WHERE PKID=71486
+SELECT*FROM Cp WHERE NumCp='FNC9-0000653'
+Update Cp set PersonaNombre='CORPORACIÓN D RIVAS S.A.C.' where NumCp='FNC9-0000653'
+
+select*from NotaCredito where PKID=3033108
 select*from Persona where PKID=9952
 select
 per.Nombre+' '+per.ApellidoPaterno as persona
@@ -179,6 +184,10 @@ select*from ItemProducto where PKID in (
 4809426,
 4809427)
 --update ,edido set EstadoEntrega='PENDIENTE' where PKID=813024
+
+select*from Persona where DocIdentidad='15963717'
+
+update Persona set Codigo='15963717' where PKID=38666
 
 ----ventas---
 select *from Cp where NumCp='F02-0030910' and PKID=2851242

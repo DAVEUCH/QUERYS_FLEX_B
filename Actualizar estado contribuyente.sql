@@ -3,7 +3,7 @@ select top 10*from GC_Cliente where IDPersona=10452
 
 SELECT
     CLI.PKID AS Id,
-    --PER.Codigo,1643
+    --GCC.IDPersona,
     PER.DocIdentidad,
     --PER.Nombre,
 	--DIRE.Descripcion,
@@ -13,72 +13,50 @@ SELECT
 	GCC.fecUlt_Vta_contado,
 	GCC.fecAnt_aUlt_Vta,
 	GCC.fecUlt_Vta,
-	GCC.Estado_Contribuyente_SUNAT
-	--GCC.Score
+	GCC.Estado_Contribuyente_SUNAT,
+	GCC.Score
 FROM Cliente CLI
 LEFT JOIN Persona PER ON PER.PKID = CLI.PKID
 --LEFT JOIN Direccion DIRE ON DIRE.IDPersona=PER.PKID
 left join GC_Cliente GCC on GCC.IDPersona=CLI.PKID
 WHERE PER.Codigo in ( 
- '10450104421 ',
- '10294047927 ',
- '10210891701 ',
- '20505005431 ',
  '10444673058 ',
- '10153718577 ',
- '10005149814 ',
  '10106465890 ',
- '10180976715 ',
- '10427052791 ',
  '10470352707 ',
  '10205946034 ',
- '10193287226 ',
  '20539819501 ',
- '10159847565 ',
  '10293588371 ',
  '20532355576 ',
- '20534247169 ',
  '20494944759 ',
- '10805601286 ',
  '20508964391 ',
- '20450681700 ',
  '20480192428 ',
- '20129901111 ',
  '10419889135 ',
  '10433431982 '
  ) ORDER BY CASE PER.DocIdentidad 
 
-when  '10450104421 ' then 1
-when  '10294047927 ' then 2
-when  '10210891701 ' then 3
-when  '20505005431 ' then 4
-when  '10444673058 ' then 5
-when  '10153718577 ' then 6
-when  '10005149814 ' then 7
-when  '10106465890 ' then 8
-when  '10180976715 ' then 9
-when  '10427052791 ' then 10
-when  '10470352707 ' then 11
-when  '10205946034 ' then 12
-when  '10193287226 ' then 13
-when  '20539819501 ' then 14
-when  '10159847565 ' then 15
-when  '10293588371 ' then 16
-when  '20532355576 ' then 17
-when  '20534247169 ' then 18
-when  '20494944759 ' then 19
-when  '10805601286 ' then 20
-when  '20508964391 ' then 21
-when  '20450681700 ' then 22
-when  '20480192428 ' then 23
-when  '20129901111 ' then 24
-when  '10419889135 ' then 25
-when  '10433431982 ' then 26
+when  '10444673058 ' then 1
+when  '10106465890 ' then 2
+when  '10470352707 ' then 3
+when  '10205946034 ' then 4
+when  '20539819501 ' then 5
+when  '10293588371 ' then 6
+when  '20532355576 ' then 7
+when  '20494944759 ' then 8
+when  '20508964391 ' then 9
+when  '20480192428 ' then 10
+when  '10419889135 ' then 11
+when  '10433431982 ' then 12
 
 -- Para manejar cualquier caso no listado explícitamente
-END;
+END; 
 
-update GC_Cliente set fecAnt_aUlt_Vta='23-01-2014',fecUlt_Vta_credito='23-01-2014',fecUlt_Vta='23-01-2014' where IDPersona=812
+select top 10*from GC_Cliente where IDPersona=10728
+UPDATE GC_Cliente SET Score='900' where  IDPersona=2
+select*from Persona where PKID=10728   20613762036
+
+
+
+update GC_Cliente set fecAnt_aUlt_Vta='01-01-2014',fecUlt_Vta_credito='01-01-2014',fecUlt_Vta='01-01-2014',Estado_Contribuyente_SUNAT='CASTIGO / JUDICIAL' where IDPersona=812
 --update GC_Cliente set Score=1 WHERE IDPersona=1
  --select * from GC_Cliente where IDPersona=2496
 --Condicion_Contribuyente_SUNAT

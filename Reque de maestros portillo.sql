@@ -55,16 +55,34 @@ CLsub.Descripcion as descisub
 from ProductoServicio pro
 LEFT JOIN ClaseProductoServicio CLsub on CLsub.PKID=pro.IDClaseProductoServicio
 left join ClaseProductoServicio CLprin on CLsub.IDClaseProductoServicioPadre=CLprin.PKID
-WHERE LTRIM(RTRIM(pro.Codigo)) IN ( 'TC.20004 ',
- 'TC.20005',
- 'TC.2066',
- 'TC.2088')
+--left join Marca mar on mar.PKID=
+WHERE LTRIM(RTRIM(pro.Codigo)) IN ( 
+ 'RT.CMKD-2',
+ 'RT.CMKH-26',
+ 'RT.CMKH-2',
+ 'RT.CMKH-17',
+ 'RT.CMKH-9',
+ 'RT.CMKH-13',
+ 'RT.CMKH-8',
+ 'RT.CMKH-10',
+ 'RT.GA0102',
+ 'RT.CMKH-11',
+ 'RT.CMKH-14',
+ 'RT.CMKH-1',
+ 'RT.CMKH-25',
+ 'RT.CMKH-24',
+ 'RT.GA0103',
+ 'RT.GA0106L',
+ 'RT.GA0106R',
+ 'RT.GA0105')
  order by case Codigo
-when  'TC.20004 ' then 1
-when  'TC.20005 ' then 2
-
+when  'RT.CMKD-2' then 1
+when  'RT.CMKH-26 ' then 2
+when  'RT.CMKH-2 ' then 3
+when  'RT.CMKH-17' then 4
 END
-
+  select top 1*from ClaseProductoServicio where PKID=878
+  UPDATE ClaseProductoServicio SET img_lp=1 where PKID=878 
 -------------------------
 select CLprin.PKID as IdClasePrinc,
 CLprin.Descripcion as descipprincial,

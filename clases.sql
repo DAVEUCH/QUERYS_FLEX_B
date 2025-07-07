@@ -33,7 +33,7 @@ ORDER BY CLprin.Descripcion  ASC
 
 SELECT TOP 1*FROM Grupodeimpresion_ClaseProductoServicio WHERE IDClaseProductoServicio=1021
 
-select  Descripcion, gcc.codigoGICP from ClaseProductoServicio class
+select class.PKID ,class.Descripcion, gcc.codigoGICP from ClaseProductoServicio class
 LEFT join Grupodeimpresion_ClaseProductoServicio gcc on gcc.IDClaseProductoServicio=class.PKID
 where
 Activo=1 and
@@ -55,6 +55,14 @@ Descripcion  IN (
 'RETEN-RODAJE',
 'OBSEQUIOS',
 'Otros',
-'SERVICIOS')
+'SERVICIOS',
+'SOPORTE AMORTIGUADOR')
 ORDER BY Descripcion  ASC
+
+update Grupodeimpresion_ClaseProductoServicio set codigoGICP='C' WHERE IDClaseProductoServicio=878
+
+SELECT TOP 1*FROM Grupodeimpresion_ClaseProductoServicio WHERE IDClaseProductoServicio=878
+
+INSERT INTO Grupodeimpresion_ClaseProductoServicio (codigoGICP,IDClaseProductoServicio)VALUES
+('C',878)
 
