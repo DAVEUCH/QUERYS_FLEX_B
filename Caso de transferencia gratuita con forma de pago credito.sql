@@ -1,8 +1,15 @@
 Select * from vrpteVentas_DetComprobantesyProductos_Mercaderia Where Fecha Between '2024-01-08' And '2024-20-08'
 
 select top(10)*from Cp where NumCp in('F001-0028251 ','F001-0028252')
-select*from CpCobrarPagar where PKID in (851146,851147)
-update CpCobrarPagar set IDModalidadCredito=0, Credito=0, FechaPago='23-06-2025' where PKID in (851146,851147)
+
+select top(10)*from Cp where NumCp in('118-2025-10-175544','235-2025-10-071242')--56/100000014
+select*from CpCobrarPagar where PKID in (3036504,3024310)
+SELECT top 10*FROM ModalidadCredito where PKID=100000037
+
+--select*from CpCobrarPagar where PKID in (851146,851147)
+update CpCobrarPagar set IDModalidadCredito=0, Credito=0,
+FechaPago='19-06-2025',FechaVencimiento='19-06-2025',FechaProgramacionPago='19-06-2025'
+where PKID in (3024310)
 
 select top(10)*from Cp where NumCp in('F001-0027431')
 

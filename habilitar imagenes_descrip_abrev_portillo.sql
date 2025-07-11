@@ -1,13 +1,20 @@
+use GCI
+
 -----------
 UPDATE ProductoServicio SET IDClaseProductoServicio=964 WHERE PKID=10028
 SELECT TOP 10*FROM ProductoServicio WHERE PKID=25253
 select CLprin.PKID as IdClasePrinc,
 CLprin.Descripcion as descipprincial,
 CLsub.PKID as IdClaseSub,
-CLsub.Descripcion as descisub  
+CLsub.Descripcion as descisub,
+CLsub.img_lp
 from ClaseProductoServicio CLprin
 left join ClaseProductoServicio CLsub on CLsub.IDClaseProductoServicioPadre=CLprin.PKID
 where 
+CLsub.img_lp=0
+--and
+CLsub.Descripcion_Abrev is null
+
 --CLprin.PKID =763
 --and
 CLsub.Descripcion  IN (
@@ -29,7 +36,7 @@ from ProductoServicio pro
 LEFT JOIN ClaseProductoServicio CLsub on CLsub.PKID=pro.IDClaseProductoServicio
 left join ClaseProductoServicio CLprin on CLsub.IDClaseProductoServicioPadre=CLprin.PKID
 WHERE LTRIM(RTRIM(pro.Codigo)) IN (
-'CH.9700 ',
+ 'CH.9700 ',
  'CH.9901 ',
  'CH.9023 ',
  'CH.9055 ',
@@ -130,7 +137,7 @@ CLsub.PKID as IdClaseSub,
 CLsub.Descripcion as descisub  
 from ClaseProductoServicio CLprin
 left join ClaseProductoServicio CLsub on CLsub.IDClaseProductoServicioPadre=CLprin.PKID
-where CLsub.Descripcion='AMORTIGUADOR CONVENCIONAL'
+where CLsub.Descripcion='BUJIA IRIDIUM'
 ORDER BY CLsub.Descripcion ASC
 
 select * from Grupodeimpresion_ClaseProductoServicio where IDClaseProductoServicio=765
@@ -142,7 +149,58 @@ select *from ClaseProductoServicio where PKID in (383,460,489,839,909,953)
 --update ClaseProductoServicio set Descripcion_Abrev='VALVULA CANISTER' where PKID=953
 --update ClaseProductoServicio set img_lp=1 where PKID in (383,460,489,839,909,953)
 
-SELECT*FROM ClaseProductoServicio WHERE Descripcion='PRUEBAAAAA'
+SELECT*FROM ClaseProductoServicio WHERE Descripcion='CALIBRADOR BUJIA'
+select top 1*from ProductoServicio 
+
+select*from ClaseProductoServicio where PKID=909
 
 ---------------------actualuizar la linea del producto
-UPDATE ProductoServicio SET IDClaseProductoServicio=961  WHERE PKID=24289
+UPDATE ProductoServicio SET IDClaseProductoServicio=874 WHERE PKID=21883
+UPDATE ProductoServicio SET IDClaseProductoServicio=874 WHERE PKID=15258
+UPDATE ProductoServicio SET IDClaseProductoServicio=874 WHERE PKID=21877
+UPDATE ProductoServicio SET IDClaseProductoServicio=874 WHERE PKID=22805
+UPDATE ProductoServicio SET IDClaseProductoServicio=874 WHERE PKID=21879
+UPDATE ProductoServicio SET IDClaseProductoServicio=874 WHERE PKID=21880
+UPDATE ProductoServicio SET IDClaseProductoServicio=874 WHERE PKID=21881
+UPDATE ProductoServicio SET IDClaseProductoServicio=874 WHERE PKID=546
+UPDATE ProductoServicio SET IDClaseProductoServicio=874 WHERE PKID=15261
+UPDATE ProductoServicio SET IDClaseProductoServicio=874 WHERE PKID=21882
+UPDATE ProductoServicio SET IDClaseProductoServicio=874 WHERE PKID=478
+UPDATE ProductoServicio SET IDClaseProductoServicio=975 WHERE PKID=491
+UPDATE ProductoServicio SET IDClaseProductoServicio=975 WHERE PKID=21135
+UPDATE ProductoServicio SET IDClaseProductoServicio=975 WHERE PKID=18785
+UPDATE ProductoServicio SET IDClaseProductoServicio=975 WHERE PKID=18784
+UPDATE ProductoServicio SET IDClaseProductoServicio=975 WHERE PKID=505
+UPDATE ProductoServicio SET IDClaseProductoServicio=975 WHERE PKID=18775
+UPDATE ProductoServicio SET IDClaseProductoServicio=975 WHERE PKID=8160
+UPDATE ProductoServicio SET IDClaseProductoServicio=975 WHERE PKID=18776
+UPDATE ProductoServicio SET IDClaseProductoServicio=975 WHERE PKID=28046
+UPDATE ProductoServicio SET IDClaseProductoServicio=975 WHERE PKID=9994
+UPDATE ProductoServicio SET IDClaseProductoServicio=975 WHERE PKID=17534
+UPDATE ProductoServicio SET IDClaseProductoServicio=975 WHERE PKID=9995
+UPDATE ProductoServicio SET IDClaseProductoServicio=975 WHERE PKID=21057
+UPDATE ProductoServicio SET IDClaseProductoServicio=975 WHERE PKID=15178
+UPDATE ProductoServicio SET IDClaseProductoServicio=975 WHERE PKID=11638
+UPDATE ProductoServicio SET IDClaseProductoServicio=975 WHERE PKID=8593
+UPDATE ProductoServicio SET IDClaseProductoServicio=975 WHERE PKID=22073
+UPDATE ProductoServicio SET IDClaseProductoServicio=975 WHERE PKID=542
+UPDATE ProductoServicio SET IDClaseProductoServicio=975 WHERE PKID=8598
+UPDATE ProductoServicio SET IDClaseProductoServicio=975 WHERE PKID=8599
+UPDATE ProductoServicio SET IDClaseProductoServicio=975 WHERE PKID=545
+UPDATE ProductoServicio SET IDClaseProductoServicio=975 WHERE PKID=8601
+UPDATE ProductoServicio SET IDClaseProductoServicio=975 WHERE PKID=9638
+UPDATE ProductoServicio SET IDClaseProductoServicio=975 WHERE PKID=20327
+UPDATE ProductoServicio SET IDClaseProductoServicio=975 WHERE PKID=8162
+UPDATE ProductoServicio SET IDClaseProductoServicio=975 WHERE PKID=561
+UPDATE ProductoServicio SET IDClaseProductoServicio=975 WHERE PKID=18722
+UPDATE ProductoServicio SET IDClaseProductoServicio=975 WHERE PKID=18723
+UPDATE ProductoServicio SET IDClaseProductoServicio=975 WHERE PKID=8604
+UPDATE ProductoServicio SET IDClaseProductoServicio=975 WHERE PKID=13573
+UPDATE ProductoServicio SET IDClaseProductoServicio=975 WHERE PKID=8606
+UPDATE ProductoServicio SET IDClaseProductoServicio=975 WHERE PKID=573
+UPDATE ProductoServicio SET IDClaseProductoServicio=975 WHERE PKID=8610
+UPDATE ProductoServicio SET IDClaseProductoServicio=889 WHERE PKID=492
+
+
+
+

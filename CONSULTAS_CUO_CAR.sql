@@ -182,3 +182,90 @@ SELECT * FROM dbo.fFB_LibroMayor2010_2(3, 100000035, 100000494, 100000494, '4212
 select*from Periodo where PKID=100000497
 select*from PlanCuentas where PKID=3
 select*from Ejercicio where PKID=100000035
+
+--------------------------------------------LE 8.2 [CR.v1] LE8.2 REGISTRO DE COMPRAS - SUJETOS NO DOMICILIADOS
+
+SELECT 
+  Periodo,
+  CUO CodigoUnicoOperacion,
+  NumAsientoCorrelativo NumeroCorrelativoAsiento,
+  FechaEmision,
+  TipoComprobantePagoCodigo,
+  NumSerieDocumento NumeroSerie,
+  NumeroDocumento Numero,
+  ValorAdq ValorAdquisicion,
+  Otros OtrosAdicionales,
+  ImporteTotal ImporteTotalAdquisicion,
+  CASE 
+    WHEN RazonSocial IN ('WHATICKET LLC', 'CAMACHO NAMUCHE SUSANA MADELEINE','FEDERAL MOGUL CORP.','BANA HOSTING') 
+    THEN '' 
+    ELSE ReferenciaTipoComprobantePago 
+  END AS TipoComprobantePagoDua,
+
+  CASE 
+    WHEN RazonSocial IN ('WHATICKET LLC', 'CAMACHO NAMUCHE SUSANA MADELEINE','FEDERAL MOGUL CORP.','BANA HOSTING') 
+    THEN '' 
+    ELSE ReferenciaNumeroSerie 
+  END AS SerieComprobantePago,
+    CASE 
+    WHEN RazonSocial IN ('WHATICKET LLC', 'CAMACHO NAMUCHE SUSANA MADELEINE','FEDERAL MOGUL CORP.','BANA HOSTING') 
+    THEN '' 
+    ELSE AñoDua 
+  END AS AñoDua,
+  ReferenciaNumero NumeroComprobantePago,
+  ImpuestoBaseGravada18 MontoRetencionIGV,
+  CodigoMoneda MonedaCodigo,
+  TipoDeCambio TimpoCambio,
+  Pais PaisResidenciaCodigo,
+  RazonSocial PersonaNombre,
+  Domicilio DomicilioExtranjero,
+  NumeroDocIdentidad DocumentoIdentidad,
+  NumIdent_fiscal NumeroIDentificacionFiscal,
+  PersonaPaga ApellidosNombresBeneficiario,
+  paisResi_beni PaisBeneficiario,
+  Vehiculo VinculoConBeneficiario,
+  ImporteTotal2 RentaBruta,
+  Campo DeduccionCostoEnajenacion,
+  ImporteTotal3 RentaNeta,
+  Tasa TasaRetencion,
+  Impuesto ImpuestoRetenido,
+  Convenio ConveniosEvitarDobleImposicionTabla25,
+  Exonera ExoneracionAplicadaTabla33,
+  TipoRenta TipoRentaTabla31,
+  ModalServi ModalidadServicioPrestadoTabla32,
+  aplica AplicacionArt76,
+  '0' AS EstadoAnotacion,
+  '' AS Vacio
+FROM usv_regCompras_LE_82
+WHERE TipoComprobantePagoCodigo <> '21'
+AND Periodo='20250600'
+and RazonSocial='FABRICA COLOMBIANA DE REP. AUTOMOT. S.A.'
+
+
+----PROVEEDOR NO TIENE PAIS
+
+select TOP 10*from Persona where Nombre LIKE 'ZF SERVICES%'
+
+insert proveedorext_codpais (idProveedor,codPais) values
+(65731,'9169')
+
+select top 10*from proveedorext_codpais where idProveedor=65731
+
+---------- no sale NumeroComprobantePago en el 8.2 ----
+---DUA
+select*from Cp where NumCp='235-2025-10-097429' --'COLOMBIA  DUA: 235-2025-10-097429-01-8-00'
+update Cp set Observacion='COLOMBIA  DUA: 235-2025-10-097429-01-8-00' where PKID=3025064
+--GUIA
+select*from Cp where NumCp='TAD09-0000606' 
+update Cp set Observacion='COLOMBIA  DUA: 235-2025-10-097429-01-8-00' where PKID=3025026
+---FACTURA
+select*from Cp where NumCp='097429' --COLOMBIA - 457 KG / 14 BULTOS  DUA: 235-2025-10-097429-01-8-00
+update Cp set Observacion='COLOMBIA - 457 KG / 14 BULTOS  DUA: 235-2025-10-097429-01-8-00' where PKID=3028789
+
+------abres la factura, lo de arriba solo utliza el query
+select*from Cp where NumCp='097429'    -----COLOMBIA  DUA: 235-2025-10-097429-01-8-00
+update Cp set Observacion='COLOMBIA DUA: 235-2025-10-097429-01-8-00' where PKID=3025533
+select*from Cp where NumCp='NCF13001' 
+select*from Cp where NumCp='EXA00721' 
+select*from Cp where NumCp='OCI25-0000015' 
+update Cp set Observacion='COLOMBIA DUA: 235-2025-10-097429-01-8-00' where PKID=2964177

@@ -23,7 +23,7 @@ left join Empresa em on em.PKID=uem.IDEmpresa
 left join ePerfilUsuario epu on epu.ID=usu.IDPerfilUsuario
 left join UsuarioActividad uac on uac.IDUsuario=epu.ID
 left join Actividad ac on ac.PKID =uac.IDActividad
- where usu.IDUsuario='HARCEG'
+ where usu.IDUsuario='AACOSTAS'
 
  SELECT UA.PKID, UA.IDUsuario, IDActividad, ac.Descripcion
 FROM UsuarioActividad UA

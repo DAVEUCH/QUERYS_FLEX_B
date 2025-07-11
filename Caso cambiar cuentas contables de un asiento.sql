@@ -202,14 +202,15 @@ FechaTipoCambio='2025-10-02',
 TipoCambio='3.718'
 where NumCp='F001-0026461'
 -------------------------------------------------------------------------------------
+--SELECT *FROM Cp 
+--WHERE  PKID=2861576
 SELECT *FROM Cp 
-WHERE  PKID=2861576
-SELECT *FROM Cp 
-WHERE NumCp='F001-026530' AND PKID=2917944
+WHERE NumCp='F001-0000079' AND PKID=3013518
+
 select*from VoucherContable
 where
-NumCp='1-12-2024-0000136' 
-select *from Asiento where IDVoucher=2903619
+NumCp='1-06-2025-0000015' 
+select *from Asiento where IDVoucher=3013518
 
 select 
 CA.PKID,
@@ -240,18 +241,24 @@ update CargoAbono set AbonoMonedaBase='0.00' where PKID=17612961
 
 update VoucherContable
 set
-Fecha='2025-10-02',
-FechaTipoCambio='2025-10-02',
-TipoCambioFecha='3.718' 
-where PKID=2917944
+Fecha='2025-31-05',
+FechaTipoCambio='2025-31-05',
+TipoCambioFecha='3.632' ,
+NumCp='1-05-2025-0000295'
+where PKID=3013518
 
 update Cp set
 --IDMoneda=1
-FechaEmision='2025-16-01',
-Hora='2025-16-01 10:34',
-FechaTipoCambio='2025-16-01',
-TipoCambio='3.768'
-where NumCp='F001-0026122' AND PKID=2917944
+FechaEmision='2025-31-05',
+Fecha='2025-31-05',
+Hora='2025-31-05 10:34',
+FechaTipoCambio='2025-31-05',
+TipoCambio='3.632'
+where NumCp='F001-0000079' AND PKID=3013518
+
+SELECT TOP 500*FROM VoucherContable WHERE IDPeriodo=100000498 ORDER BY PKID DESC 
+
+SELECT*FROM Periodo
 
 
 -------------------------------------------------------------
