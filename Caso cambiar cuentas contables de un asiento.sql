@@ -360,4 +360,50 @@ Hora='2025-03-04 17:03',
 FechaTipoCambio='2025-03-04',
 TipoCambio='3.680'
 where NumCp='FF20-0000823' AND PKID=835621
+----------------------------------------
+
+select*from Cp where NumCp='441945225E'
+update VoucherContable
+set
+Fecha='2025-01-07',
+FechaTipoCambio='2025-01-07',
+TipoCambioFecha='3.549' 
+,IDPeriodo=100000490,
+NumCp='6-07-2025-00111'
+where PKID=848131
+
+select*from VoucherContable where NumCp='6-07-2025-00111'
+select top 10*from VoucherContable where IDTipoCp=3684 and IDTipoCpOrigen='774' order by PKID desc
+select*from Asiento where IDVoucher=848131
+select top 12*from CargoAbono
+update Cp set
+Fecha='2025-01-07',
+FechaEmision='2025-22-05',
+Hora='2025-22-05 17:03',
+FechaTipoCambio='2025-01-07',
+TipoCambio='3.549',
+NumCpContable='6-07-2025-00111'
+where NumCp='441945225E' AND PKID=848131
+
+select*from Periodo where PKID= 100000490
+
+
+select 
+CA.PKID,
+IDAsiento,
+IDCuentaContable,
+CC.Descripcion,
+CC.Cuenta,
+CC.PKID AS ID_CUENTA,
+IDAuxiliar,
+Cargo,
+Abono,
+CargoMonedaBase,
+AbonoMonedaBase,
+Glosa,
+CargoMonedaDocumento,
+AbonoMonedaDocumento
+from CargoAbono CA
+LEFT JOIN CuentaContable CC ON CC.PKID=CA.IDCuentaContable
+where IDAsiento=2776991
 
