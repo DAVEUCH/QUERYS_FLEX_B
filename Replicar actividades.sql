@@ -1,3 +1,4 @@
+use FREDDY
 select*from Usuario where IDUsuario='KNORIEGAO'
 EXEC sp_ActualizarxActividadesxUsuario 
     @IDUsuario = 4150,       -- ID del usuario
@@ -23,7 +24,10 @@ left join Empresa em on em.PKID=uem.IDEmpresa
 left join ePerfilUsuario epu on epu.ID=usu.IDPerfilUsuario
 left join UsuarioActividad uac on uac.IDUsuario=epu.ID
 left join Actividad ac on ac.PKID =uac.IDActividad
- where usu.IDUsuario='AACOSTAS'
+ --where usu.IDUsuario='AACOSTAS'
+ where usu.IDUsuario='DJESUSA'
+ and em.Nombre='FREDDY'
+ ORDER BY ac.Descripcion ASC
 
  SELECT UA.PKID, UA.IDUsuario, IDActividad, ac.Descripcion
 FROM UsuarioActividad UA

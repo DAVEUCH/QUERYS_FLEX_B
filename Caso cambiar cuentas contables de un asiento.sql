@@ -374,6 +374,16 @@ where PKID=848131
 
 select*from VoucherContable where NumCp='6-07-2025-00111'
 select top 10*from VoucherContable where IDTipoCp=3684 and IDTipoCpOrigen='774' order by PKID desc
+select top 10 *from cp 
+where NumCpContable='6-07-2025-00111'
+order by PKID desc
+
+
+update Cp set NumCpContable='6-07-2025-10111' where PKID=848131
+select*from VoucherContable where NumCp='6-07-2025-10111'
+update VoucherContable set NumCp='6-07-2025-10111' where PKID=848131
+
+
 select*from Asiento where IDVoucher=848131
 select top 12*from CargoAbono
 update Cp set

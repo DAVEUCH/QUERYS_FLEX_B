@@ -269,3 +269,13 @@ select*from Cp where NumCp='NCF13001'
 select*from Cp where NumCp='EXA00721' 
 select*from Cp where NumCp='OCI25-0000015' 
 update Cp set Observacion='COLOMBIA DUA: 235-2025-10-097429-01-8-00' where PKID=2964177
+
+
+------libro mayor GC 
+
+SELECT * FROM dbo.fFB_LibroMayor2010_2_SolyDolares(@idPlanCuentas, @idEjercicio, @idPeriodoInicial, @idPeriodoFinal, @cuentaInicial, @cuentaFinal, @Nivel)
+
+
+-- LIBRO MAYOR FREDDY 
+
+SELECT * FROM dbo.fFB_LibroMayor2010_2(@idPlanCuentas, @idEjercicio, @idPeriodoInicial, @idPeriodoFinal, @cuentaInicial, @cuentaFinal, @Nivel)

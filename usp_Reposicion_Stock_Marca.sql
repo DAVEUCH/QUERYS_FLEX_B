@@ -118,10 +118,10 @@ Left outer join Caracteristica c9 on Producto.IDCaracteristica9 = c9.PKID
 Left outer join Caracteristica c10 on Producto.IDCaracteristica10 = c10.PKID          
 Left outer join tab_VentasPorProducto_Sum On tab_VentasPorProducto_Sum.IDProducto = Producto.PKID           
 Where (dbo.ProductoServicio.Activo = 1)  And (ClaseProductoServicio.CodigoClase not in ('OBSE', 'CEL'))     --(dbo.ProductoServicio.Activo = 1)  And        
-and dbo.Producto.IDMarca = 204           
+and dbo.Producto.IDMarca = 504           
 --and dbo.Producto.IDProveedor = 70477         
 Order by dbo.ProductoServicio.Codigo   
 
-select*from Marca where Descripcion='NAKATA'
+select*from Marca where Descripcion='CSF'
 select*from Persona where Nombre like 'ADI%'
 

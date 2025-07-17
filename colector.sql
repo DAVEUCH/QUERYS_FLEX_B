@@ -11,17 +11,22 @@ EXEC usp_GC_M_Colectores_show_Almacen_Fechas 7, '05/01/2010', '05/01/2010'
 EXEC usp_GC_M_Colectores_show_Almacen_Fechas 5, '20200101', '20250617'
 
 ---REPORTE RESULTADO STOCK DEL COLECTOR
- EXEC usp_repInv_diferencias_AlmacenColector 5, '17/06/2025' , '17/06/2025'
+ EXEC usp_repInv_diferencias_AlmacenColector 5, '17/06/2025', '17/06/2025'
 
  --reporte no inventariados
-  EXEC usp_repInv_PendientesLeer_Almacen_Fechas 3, '14/07/2025', '14/07/2025'
+  EXEC usp_repInv_PendientesLeer_Almacen_Fechas 5, '17/06/2025', '17/06/2025'
 
-   EXEC usp_repInv_diferencias_AlmacenALLProd 3, '14/07/2025' , '14/07/2025' 
+   --EXEC usp_repInv_diferencias_AlmacenALLProd 3, '14/07/2025' , '14/07/2025' 
 
  ---reporete de productos con codigos no enconyrados
-  EXEC usp_GC_M_Colectores_NO_Encontrados_show_Almacen_Fechas 3, '14/07/2025', '14/07/2025'
+  EXEC usp_GC_M_Colectores_NO_Encontrados_show_Almacen_Fechas 5, '17/06/2025', '17/06/2025'
 
- select*from Almacen
+SELECT TOP 20 * FROM Almacen
+SELECT TOP 20 * FROM Marca where Descripcion='2D'
+
+exec usp_Reposicion_Stock_Marca3 1,5
+
+
 
  drop procedure [dbo].[usp_GC_M_Colectores_show_Almacen_Fechas_1]  
 (  
@@ -39,6 +44,9 @@ Where Almacen = @CODAlmacen
 --And   left(Fecha,10) between @Fecha_Ini and @Fecha_Fin
 And   TRY_CAST(LEFT(Fecha,10) AS DATE) between @Fecha_Ini and @Fecha_Fin
 Order by Producto, Ubicacion, Fecha
+
+EXEC usp_GC_M_Colectores_show_Almacen_Fechas 5, '2020-01-01', '2020-01-01'
+
 
  
 
