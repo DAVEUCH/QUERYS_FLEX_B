@@ -25,7 +25,21 @@ SELECT TOP 20 * FROM Almacen
 SELECT TOP 20 * FROM Marca where Descripcion='2D'
 
 exec usp_Reposicion_Stock_Marca3 1,5
+ EXEC usp_Reposicion_Stock_Proveedor 70477, 4
 
+ exec usp_Reposicion_Stock_Marca3 504,4
+
+  EXEC usp_Reposicion_Stock 1
+
+ select*from Marca where PKID=504
+
+ select 
+ per.PKID,
+  per.DocIdentidad,
+ per.Nombre
+ from Proveedor pro
+ inner join Persona per on per.PKID=pro.PKID
+ order by  per.Nombre asc
 
 
  drop procedure [dbo].[usp_GC_M_Colectores_show_Almacen_Fechas_1]  
