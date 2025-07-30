@@ -611,6 +611,28 @@ update cp set NumeroVerificacion='9998821-0000677' where PKID=2796226
 
 -------------------
 
+
+---------------compra--
+select 
+cpv.PKID,
+cpv.NumCp,
+cpV.FechaEmision,
+com.DocIdentidad,
+cpv.PersonaNombre,
+cpv.Total
+from CpCompra com
+inner join cp cpv  on cpv.PKID=com.PKID
+inner join Persona per on per.PKID= cpv.IDResponsable
+where 
+cpv.IDPersona=16136
+and cpv.IDTipoCp=5209
+
+
+select*from Persona WHERE DocIdentidad='10060415281'
+
+SELECT*FROM Cp WHERE IDPersona=48658
+
+
 --ACTUALIZAR DIRECCIONES 
 --SELECT*FROM CpVenta WHERE DocIdentidad='07805893' and PKID=2786606
 --UPDATE CpVenta SET Direccion='Jiron Huaroc Mz A Lote 2 Urbanización Nueva Castilla', 

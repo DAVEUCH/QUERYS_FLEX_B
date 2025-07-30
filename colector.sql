@@ -1,12 +1,19 @@
- EXEC usp_GC_M_Colectores_ins 'FREDDY', 'ALM05', '11', 'MP.68084456AA', 2, '17/06/2025 04:11:50' 
+EXEC usp_GC_M_Colectores_ins 'FREDDY', 'ALM05', '', 'MP.68084456AA', 2, '2025-06-17 03:35:36' 
 
+select* from GC_M_Colectores where Fecha='2025-06-17 03:35:36'
 
+DELETE FROM GC_M_Colectores WHERE pkid IN (38513,38516)
 select top 10*from GC_M_Colectores where Producto='GB.GWHY-44AH' and pkid=1
 --update GC_M_Colectores set Fecha='17/06/2025 04:11:50' where pkid=37381 and Producto='MP.68084456AA'--17/06/2025 04:11:50
+
+SELECT TOP 10*FROM GC_M_Colectores ORDER BY Fecha DESC
 
 --SELECT top 20* FROM GC_M_Colectores WHERE CONVERT(datetime, Fecha) > GETDATE()
 ---REPORTE DATOS DE COLECTOR
 EXEC usp_GC_M_Colectores_show_Almacen_Fechas 7, '05/01/2010', '05/01/2010'
+select*from Almacen where PKID=5
+EXEC usp_GC_M_Colectores_show_Almacen_Fechas 5, '17/06/2025', '17/06/2025'
+select* from GC_M_Colectores where Fecha='17/06/2025 03:42:43'
 
 EXEC usp_GC_M_Colectores_show_Almacen_Fechas 5, '20200101', '20250617'
 
@@ -21,7 +28,7 @@ EXEC usp_GC_M_Colectores_show_Almacen_Fechas 5, '20200101', '20250617'
  ---reporete de productos con codigos no enconyrados
   EXEC usp_GC_M_Colectores_NO_Encontrados_show_Almacen_Fechas 5, '17/06/2025', '17/06/2025'
 
-SELECT TOP 20 * FROM Almacen
+SELECT TOP 20 * FROM Almacen where PKID=7
 SELECT TOP 20 * FROM Marca where Descripcion='2D'
 
 exec usp_Reposicion_Stock_Marca3 1,5
@@ -60,6 +67,12 @@ And   TRY_CAST(LEFT(Fecha,10) AS DATE) between @Fecha_Ini and @Fecha_Fin
 Order by Producto, Ubicacion, Fecha
 
 EXEC usp_GC_M_Colectores_show_Almacen_Fechas 5, '2020-01-01', '2020-01-01'
+
+
+SELECT * 
+FROM GC_M_Colectores 
+WHERE Empresa = '01' AND Almacen = 'ALM05' AND Producto = 'MP.68252518AA' 
+AND Fecha = '2025-06-17 03:35:36'
 
 
  

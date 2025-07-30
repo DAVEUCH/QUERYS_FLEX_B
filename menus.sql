@@ -1,4 +1,6 @@
-select *from ConfiguracionContenedores where IDUsuario=4146
+
+select*from Usuario where IDUsuario='PAGONZALEZN'
+select *from ConfiguracionContenedores where IDUsuario=300004
 --select*from ConfiguracionVista 
 select  top 1*from eContenedor1 where Nivel=1
 select  top 1*from Contenedor2
@@ -24,7 +26,7 @@ from ConfiguracionContenedores cc
 left join usv_eContenedor3_Niv1 un1 on un1.IDConfiguracionContenedor=cc.PKID
 left join usv_eContenedor3_Niv2 un2 on un1.IDContenedorPadre=un2.IDContenedorPadre and un2.IDConfiguracionContenedor=cc.PKID
 left join usv_eContenedor3_Niv3 un3 on un3.IDContenedorPadre=un2.IDContenedorPadre
-where cc.PKID=58
+where cc.PKID=87
 
 select top 10 *
 from usv_eContenedor3_Niv2 un2

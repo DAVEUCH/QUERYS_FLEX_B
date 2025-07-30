@@ -29,31 +29,133 @@ FROM         LibrosElectronicos.RegistroVentas (100000494)
 ----------------------------------LE5.1 REGISTRO LIBRO DIARIO EXPORTABLE---------------------------------------------------------------------------------------------
 
 SELECT     Periodo, 
-CodigoOperacion,
 NumeroCAR,
+CodigoOperacion,
 NumeroCorrelativo, CodigoPlanCuentas, CodigoCuentaContable, FechaOperacion, Glosa, 
 CASE WHEN 
 SUM(CONVERT(decimal(16, 2), Debe)) - SUM(CONVERT(decimal(16, 2), Haber)) > 0 THEN 
 CONVERT(varchar(15), SUM(CONVERT(decimal(16, 2), Debe)) - SUM(CONVERT(decimal(16, 2), Haber))) 
-ELSE '0.00' END AS Debe, 
+ELSE '0.00' END AS Debe,
 CASE WHEN SUM(CONVERT(decimal(16, 2), Haber)) - SUM(CONVERT(decimal(16, 2), Debe)) > 0 THEN 
 CONVERT(varchar(15), SUM(CONVERT(decimal(16, 2), Haber)) 
 - SUM(CONVERT(decimal(16, 2), Debe))) ELSE '0.00' END AS Haber, 
 CorrelativoRegistroVentas,CorrelativoRegistroCompras, 
 CorrelativoRegistroConsignaciones, EstadoOperacion, CampoLibre
 FROM         dbo.vrpte_LE_LibroDiario2010_001_v2
-WHERE    
---(convert(date,FechaOperacion,103) BETWEEN '2025-03-01' AND '2025-03-31')
+WHERE
+--(convert(date,FechaOperacion,103) BETWEEN '2025-05-01' AND '2025-05-31')
 --and Glosa='Por los gastos de percepcion'
-CodigoOperacion='4-03-2025-0001832'
+CodigoOperacion='1-05-2025-0000277'
+--NumeroCAR='2055330328207F0010000000079'
+--Periodo='20250500'
 GROUP BY Periodo, CodigoPlanCuentas, CodigoCuentaContable, FechaOperacion, EstadoOperacion, CampoLibre, NumeroCorrelativo, Glosa, 
 CorrelativoRegistroVentas, CorrelativoRegistroCompras, CorrelativoRegistroConsignaciones
-,NumeroCAR
-,CodigoOperacion
-HAVING      (SUM(CONVERT(decimal(16, 4), Debe)) - SUM(CONVERT(decimal(16, 4), Haber)) <> 0)
+,NumeroCAR,CodigoOperacion
+HAVING 
+    (SUM(CONVERT(decimal(16, 4), Debe)) - SUM(CONVERT(decimal(16, 4), Haber)) <> 0)
+    OR MAX(CodigoOperacion) = '1-05-2025-0000277'
 ORDER BY CONVERT(date, FechaOperacion)
 
-select*from Cp where NumCp='FN01-29019087'
+---------
+SELECT*FROM Cp WHERE NumCp='F001-0000079' and PKID=3013518
+select*from VoucherContable where PKID=3013518
+update  VoucherContable set IDPeriodo=100000498 where PKID=3013518
+update Cp set IDPeriodo=100000498, NumCpContable='1-05-2025-0000295' where PKID=3013518
+select*from Periodo where PKID=100000498
+select*from TipoCp where PKID=5010
+select top 150*from VoucherContable where IDPeriodo=100000498
+order by PKID desc
+------------
+
+
+SELECT CodigoOperacion, FechaOperacion
+FROM dbo.vrpte_LE_LibroDiario2010_001_v2
+WHERE Periodo='20250500'
+--CodigoOperacion = '1-05-2025-0000277'
+
+SELECT *
+FROM dbo.vrpte_LE_LibroDiario2010_001_v2
+WHERE CodigoOperacion = '1-05-2025-0000224'
+
+SELECT CodigoOperacion, SUM(CONVERT(decimal(16, 4), Debe)) AS SumaDebe, 
+SUM(CONVERT(decimal(16, 4), Haber)) AS SumaHaber
+FROM dbo.vrpte_LE_LibroDiario2010_001_v2
+WHERE CodigoOperacion = '1-05-2025-0000277'
+GROUP BY CodigoOperacion
+
+select*from Cp where NumCp= 'FF01-10049051'  FF0100010049187
+select*from Cp where NumCp= 'FF01-10049187'
+
+select*from Cp where NumCp in ('235-2025-28-04114306','118-2025-10-206141')
+select*from VoucherContable where PKID in (3013401,3008860)
+select*from Asiento where IDVoucher in (3013401,3008860)
+select*from CargoAbono where IDAsiento=6338284
+update Cp set IDLibroAuxiliar=3 where NumCp='235-2025-28-04114306'
+update Asiento set ResumirEnLibroDiario=1 where IDVoucher=3013401
+--select*from Asiento where IDVoucher=3013401
+
+select*from Cp where NumCp='118-2025-10-206141'
+select*from VoucherContable where PKID=3008860
+select*from Asiento where IDVoucher=3008860
+select*from CargoAbono where IDAsiento=6348704
+
+SELECT * 
+FROM dbo.CargoAbono 
+WHERE IDAsiento IN (
+   SELECT PKID 
+   FROM dbo.Asiento 
+   WHERE IDVoucher = (SELECT PKID FROM dbo.VoucherContable WHERE NumCp = '1-05-2025-0000277')
+)
+
+SELECT * 
+FROM dbo.Periodo 
+WHERE PKID = (SELECT IDPeriodo FROM dbo.VoucherContable WHERE NumCp = '1-05-2025-0000277')
+
+SELECT * 
+FROM dbo.Cp 
+WHERE PKID = (SELECT IDCp FROM dbo.VoucherContable WHERE NumCp = '1-05-2025-0000277')
+
+SELECT 
+  vc.NumCp, 
+  cp.NumCp AS CpNumCp,
+  cp.IDPersona, 
+  p.DocIdentidad, 
+  tc.TipoCp, 
+  tc.IDTipoComprobantePago, 
+  tcpp.Codigo AS CodigoComprobante,
+  cp.IDCptoOperacion
+FROM dbo.VoucherContable vc
+LEFT JOIN dbo.Cp cp ON cp.PKID = vc.IDCp
+LEFT JOIN dbo.Persona p ON p.PKID = cp.IDPersona
+LEFT JOIN dbo.TipoCp tc ON tc.PKID = cp.IDTipoCp
+LEFT JOIN dbo.TipoComprobantePago tcpp ON tcpp.PKID = tc.IDTipoComprobantePago
+WHERE vc.NumCp = '4-05-2025-0000682'
+
+
+
+
+-- ¿Tiene asiento?
+SELECT * FROM dbo.Asiento 
+WHERE IDVoucher = (SELECT PKID FROM dbo.VoucherContable WHERE NumCp = '4-05-2025-0000682')
+
+-- ¿Tiene cargos?
+SELECT * FROM dbo.CargoAbono 
+WHERE IDAsiento IN (
+   SELECT PKID FROM dbo.Asiento 
+   WHERE IDVoucher = (SELECT PKID FROM dbo.VoucherContable WHERE NumCp = '4-05-2025-0000682')
+)
+
+-- ¿Los cargos tienen cuenta contable?
+SELECT * FROM dbo.CuentaContable 
+WHERE PKID IN (
+   SELECT IDCuentaContable FROM dbo.CargoAbono 
+   WHERE IDAsiento IN (
+      SELECT PKID FROM dbo.Asiento 
+      WHERE IDVoucher = (SELECT PKID FROM dbo.VoucherContable WHERE NumCp = '1-05-2025-0000277')
+   )
+)
+
+
 FN01-00029019087
 select*from VoucherContable where NumCp='01-2025-5059-TAM09-0053059'
 select*from TipoCp where PKID in(5209,5199,5691,4867)

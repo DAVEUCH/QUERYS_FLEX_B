@@ -7,7 +7,7 @@ EXEC sp_ActualizarxActividadesxUsuario
 
 exec sp_ActualizarxActividadesxUsuario @IDUsuario = 4150,@IDActividad = '0AE934C8-2916-463C-93A0-81C52E46DDF0',@Accion = 'AGREGAR'
 select*from Usuario where PKID='200007'
-
+SELECT*FROM Usuario WHERE Nombre='CAJERA - CP COMPRA'
 select
 usu.pkid as Id_usuario,
 usu.IDPerfilUsuario as Id_Perfil_usu,
@@ -25,8 +25,9 @@ left join ePerfilUsuario epu on epu.ID=usu.IDPerfilUsuario
 left join UsuarioActividad uac on uac.IDUsuario=epu.ID
 left join Actividad ac on ac.PKID =uac.IDActividad
  --where usu.IDUsuario='AACOSTAS'
- where usu.IDUsuario='DJESUSA'
- and em.Nombre='FREDDY'
+where usu.IDUsuario='DMARIÑASO'
+--WHERE epu.Nombre='CAJERA - CP COMPRA'
+ and em.Nombre='GCI'
  ORDER BY ac.Descripcion ASC
 
  SELECT UA.PKID, UA.IDUsuario, IDActividad, ac.Descripcion
