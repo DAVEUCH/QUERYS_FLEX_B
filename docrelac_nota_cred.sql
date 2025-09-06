@@ -1,8 +1,8 @@
 select * from Cp where NumCp='F09-0018592' and PKID=2981056
 select * from Cp where NumCp='FNC9-0000634' and PKID=2987275
 
-select *from Cp where NumCp='F06-0028045' and PKID=3016918--2DO
-select *from Cp where NumCp='BND6-0000120' and PKID=3016919--1ro
+select *from Cp where NumCp='F05-0020685' and PKID=3009294--2DO
+select *from Cp where NumCp='FNC5-0000957' and PKID=3046226--1ro
 
 select *from Cp where NumCp in ('BNC2-0001365','FCC1-0000123','FNC5-0000942','BND6-0000120')
 SELECT top 10*FROM CpRelacionado_2 WHERE IDCp IN (3019381,3016919,3012606,3027903)
@@ -10,7 +10,7 @@ SELECT top 10*FROM CpRelacionado_2 WHERE IDCp IN (3019381,3016919,3012606,302790
 and PKID=3019381--1RO
 
 select * from Cp where NumCp='F09-0018818' and PKID=3002948
-select * from Cp where NumCp='FNC9-0000643' and PKID=3003014
+select * from Cp where NumCp='FCC1-0000129' and PKID=3046946
 
 SELECT top 10*FROM CpRelacionado_2 WHERE IDCp IN (3019381,3016919,3012606,3027903)
 
@@ -18,7 +18,7 @@ SELECT top 10*FROM CpRelacionado_2 WHERE IDCp IN (3016919)
 SELECT top 10*FROM CpRelacionado WHERE IDCp=3019381
 
 insert into CpRelacionado (IDCp,IDCpRelacionado,IDTipoCpRelacionado,IDTipoCpDestino)
-values (3012606,2999299,'883','818'),
+values (3046226,3009294,'883','818'),
 (3016919,3016918,'883','818')
 
 select*from  CpRelacionado_2 WHERE IDCp=3003014
@@ -119,11 +119,15 @@ LEFT OUTER JOIN dbo.Distrito ON dbo.Direccion.IDDistrito = Distrito.pkid
 LEFT OUTER JOIN dbo.Persona AS Vendedor ON Vendedor.PKID = dbo.Cp.IDResponsable                 
 LEFT OUTER JOIN dbo.MotivoAnulacion ON dbo.MotivoAnulacion.PKID = dbo.Cp.IDMotivoAnulacion    
 --CP RELACIONADO    
-LEFT OUTER JOIN CpRelacionado_2 ON CpRelacionado_2.IDCp=Cp.PKID      
-LEFT OUTER JOIN Cp Post ON Post.PKID=CpRelacionado_2.IDCpRelacionado      
+LEFT OUTER JOIN CpRelacionado_2 ON CpRelacionado_2.IDCp=Cp.PKID   
+--LEFT OUTER JOIN CpRelacionado ON CpRelacionado.IDCp=Cp.PKID 
+LEFT OUTER JOIN Cp Post ON Post.PKID=CpRelacionado_2.IDCpRelacionado   
+--LEFT OUTER JOIN Cp Post ON Post.PKID=CpRelacionado.IDCpRelacionado 
 LEFT OUTER JOIN TipoCp tipCPRela ON Post.IDTipoCp=tipCPRela.PKID      
 LEFT OUTER JOIN tipoComprobantepago tipCpbte ON tipCpbte.pkid=tipCPRela.IDtipoComprobantepago      
-WHERE Cp.PKID in(3019381) 
+WHERE Cp.PKID in(3046226) 
 
 
 select PKID ,Fecha,NumCp from Cp where NumCp='BNC2-0001365' and PKID=3019381
+
+select*from Cp where NumCp='FNC5-0000957'

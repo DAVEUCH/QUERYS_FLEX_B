@@ -25,9 +25,9 @@ left join ePerfilUsuario epu on epu.ID=usu.IDPerfilUsuario
 left join UsuarioActividad uac on uac.IDUsuario=epu.ID
 left join Actividad ac on ac.PKID =uac.IDActividad
  --where usu.IDUsuario='AACOSTAS'
-where usu.IDUsuario='DMARIÑASO'
+where usu.IDUsuario='BKASENGR'
 --WHERE epu.Nombre='CAJERA - CP COMPRA'
- and em.Nombre='GCI'
+ and em.Nombre='FREDDY'
  ORDER BY ac.Descripcion ASC
 
  SELECT UA.PKID, UA.IDUsuario, IDActividad, ac.Descripcion

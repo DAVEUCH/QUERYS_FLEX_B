@@ -188,12 +188,41 @@ select*from CuentaContable where PKID='900015093'
 select*from CuentaContable where PKID='900015769'
 select*from CuentaContable where PKID='900014968'
 
-select *  from vSeleccionCpCobrarPagar WHERE IDPersona=3318 AND Saldo > 0  FOR XML RAW
+select*from Persona where Nombre = 'REPUESTOS FREDDY S.A.C.'
+select *  from vSeleccionCpCobrarPagar WHERE IDPersona=1739 AND Saldo > 0 
+select *from CuentaContable where Cuenta='1312101' and PKID=900015392
 
-select*from DocCobrarPagar where PKID=874744
-select*from CpCobrarPagar where PKID=455370
-update DocCobrarPagar set saldo='1825.04' where PKID=874744--1944.16
-update CpCobrarPagar set saldo='1825.04' where PKID=455370--1944.16
+select*from Cp where NumCp='FF20-0000027'
+AND PKID=859237
+select*from Cp where NumCp='E001-0000003'
+AND PKID=862087
+--select*from TipoCp where PKID=5224
+--select*from CptoOperacion where PKID=1764
+select*from CpCobrarPagar where PKID in (859237,862087)
+update CpCobrarPagar set TipoCpCobrarPagar='Cobrar/Pagar',Saldo='60.120000',Total='60.120000',MovSaldo='1' where PKID=859237--Cobrar/Pagar
+update DocCobrarPagar set TipoDocPago='Cobrar/Pagar',Saldo='60.120000',Total='60.120000' where IDCp in (859237) ---Cobrar
+select*from DocCobrarPagar where IDCp in (859237)
+-----------------------------------------------------
+select*from Cp where NumCp='FNC1-0005209' and PKID=833782
+select*from CpCobrarPagar where PKID=833782
+select*from DocCobrarPagar where IDCp in (833782)
+-------------------------------------------------------
+select*from Cp where NumCp in ('E001-0000049','FNC1-0005346','FNC1-0005347')
+select*from CpCobrarPagar where PKID in  (862234,
+862463,
+862688)
+select*from DocCobrarPagar where IDCp in  (862234,
+862463,
+862688)
+
+
+update DocCobrarPagar set IDCuentaContable=900015392 where PKID in (1015332,
+1015342,
+1015352,
+1015382,
+1015392,
+1015402)--900012869
+--update CpCobrarPagar set saldo='1825.04' where PKID=455370--1944.16
 
 select top 1*from tipocp
 
@@ -284,5 +313,19 @@ update CpCobrarPagar set Saldo='0.41' where PKID=827771
 update DocCobrarPagar set Saldo='0.41' where IDCp= 827771
 
 select * from dbo.usf_ConsultaComisionDocumento(@de, @al)
+
+
+-----------------------------------31-07-2025-----
+
+SELECT*FROM Cp WHERE NumCp='F001-0008971' and PKID in (584973,584984)
+SELECT*FROM TipoCp where PKID in (3702)
+select*from CptoOperacion where PKID in (1785,1784)
+
+SELECT top 10*FROM CpCobrarPagar where PKID=584984  --2356.21
+select top 10*from DocCobrarPagar where IDCp=584984 --2356.21
+
+update CpCobrarPagar set Saldo='0.00', Total='0.00' where PKID=584984
+
+update DocCobrarPagar set Saldo='0.00', Total='0.00' where PKID=1158031
 
 

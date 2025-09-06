@@ -29,8 +29,10 @@ END;
 ----------------------------------------------------------------------------
 
   --freddy
-    select  Fecha,IDCptoOperacion,NumCp,IDLibroAuxiliar from cp where IDCptoOperacion=1960 and IDPeriodo=100000496
-	select*from Periodo where PKID=100000496
+    select  Fecha,IDCptoOperacion,NumCp,IDLibroAuxiliar, Total from cp where IDCptoOperacion=1960 and IDPeriodo=100000499
+
+	select*from CptoOperacion where PKID=1960
+	select*from Periodo where PKID=100000499
    -- se ha puesto un trigger para FREDDY----
 CREATE TRIGGER TR_Update_IDLibroAuxiliar
 ON CP

@@ -50,10 +50,12 @@ update CargoAbono set CargoMonedaBase='1916.95' where PKID=17515682 --AbonoMoned
 --update CargoAbono set CargoMonedaBase='345.05' where PKID=17515680
 update CargoAbono set AbonoMonedaBase='1916.95' where PKID=17515683
 -----------------------------
-select*from Cp where NumCp='E001-0001126'
-AND PKID=2903619
-select*from DocCobrarPagar where IDCp=2903619
-select top 10*from CuentaContable where PKID=900016173
+select*from Cp where NumCp='E001-0000043'
+AND PKID=521091
+select*from VoucherContable where PKID=521091
+
+--select*from DocCobrarPagar where IDCp=2903619
+--select top 10*from CuentaContable where PKID=900016173
 select*from CuentaContable where Cuenta='4212101'
 update DocCobrarPagar set IDCuentaContable=900014968 where PKID=4404985
 and Fecha='20240511' 
@@ -148,9 +150,9 @@ select*from Periodo
 --WHERE  NumCp='F001-0026461'
 select*from VoucherContable
 where
-NumCp='001-0011618' 
-select *from Asiento where IDVoucher=2957275
-update Asiento set Glosa='COBRO FT F21-0000128 GC IMPORTADORES S.A.C.' where PKID=6226955
+NumCp='001-0023232' 
+select *from Asiento where IDVoucher=859506
+update Asiento set Glosa='POR LA CANCELACIÓN DEL TERCER PRÉSTAMO MUTUO DE REFRESA A GCI' where PKID=2847639
 --update Asiento set Glosa='PROVISIÓN DE ITF' where PKID=26696806274816
 select 
 CA.PKID,
@@ -417,3 +419,103 @@ from CargoAbono CA
 LEFT JOIN CuentaContable CC ON CC.PKID=CA.IDCuentaContable
 where IDAsiento=2776991
 
+
+------------------------------------------------
+
+SELECT *FROM Cp 
+WHERE NumCp='F001-0004915' AND PKID=858211
+
+select*from VoucherContable
+where
+NumCp='6-07-2025-00477' 
+select *from Asiento where IDVoucher=858211
+
+select 
+CA.PKID,
+IDAsiento,
+IDCuentaContable,
+CC.Descripcion,
+CC.Cuenta,
+CC.PKID AS ID_CUENTA,
+IDAuxiliar,
+Cargo,
+Abono,
+CargoMonedaBase,
+AbonoMonedaBase,
+Glosa,
+CargoMonedaDocumento,
+AbonoMonedaDocumento
+from CargoAbono CA
+LEFT JOIN CuentaContable CC ON CC.PKID=CA.IDCuentaContable
+where IDAsiento=2839419
+
+update CargoAbono set CargoMonedaBase='296.65' where PKID=17612962--AbonoMonedaBase='2262.00'
+update CargoAbono set AbonoMonedaBase='296.65' where PKID=17612963
+
+
+update VoucherContable
+set
+Fecha='2025-21-07',
+FechaTipoCambio='2025-21-07',
+TipoCambioFecha='3.568' 
+where PKID=858211
+
+update Cp set
+Fecha='2025-21-07',
+FechaEmision='2025-21-07',
+Hora='2025-21-07 17:03',
+FechaTipoCambio='2025-21-07',
+TipoCambio='3.568'
+where NumCp='F001-0004915' AND PKID=858211
+
+
+--------------------------------
+
+select*from Cp where NumCp='E001-0000049'
+AND PKID=521128
+select*from VoucherContable where PKID=521128
+select*from Asiento where IDVoucher=521128
+
+select 
+CA.PKID,
+IDAsiento,
+IDCuentaContable,
+CC.Descripcion,
+CC.Cuenta,
+CC.PKID AS ID_CUENTA,
+IDAuxiliar,
+Cargo,
+Abono,
+CargoMonedaBase,
+AbonoMonedaBase,
+Glosa,
+CargoMonedaDocumento,
+AbonoMonedaDocumento,
+pn.Descripcion as plan_cue
+from CargoAbono CA
+LEFT JOIN CuentaContable CC ON CC.PKID=CA.IDCuentaContable
+left join PlanCuentas pn on pn.PKID=cc.IDPlanCuentas
+where IDAsiento=1490683
+
+select *from CuentaContable where Cuenta in('1312101','4011101','7012102') and IDPlanCuentas=3
+
+update CuentaContable set IDPlanCuentas=3 where PKID=900012869
+--and IDPlanCuentas=3
+--select *from CuentaContable where Cuenta in('1312101','4011101','7012102') and IDPlanCuentas=3
+
+update CargoAbono set IDCuentaContable=900015392 where PKID=5109624 --1312101
+update CargoAbono set IDCuentaContable=900016074 where PKID=5109625 ---7012102
+
+---------------------------------------------------------------------------------
+
+select*from Cp where NumCp in ('FNC1-0005345','FNC1-0005346','FNC1-0005347')
+select*from CpCobrarPagar where PKID in  (862234,
+862463,
+862688)
+select*from DocCobrarPagar where IDCp in  (862234,
+862463,
+862688)
+
+
+update DocCobrarPagar set IDCuentaContable=900015392 where PKID in (1015332,
+1015342,

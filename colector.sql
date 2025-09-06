@@ -68,11 +68,19 @@ Order by Producto, Ubicacion, Fecha
 
 EXEC usp_GC_M_Colectores_show_Almacen_Fechas 5, '2020-01-01', '2020-01-01'
 
-
-SELECT * 
+-----VALIDANDO 
+SELECT top 10* 
 FROM GC_M_Colectores 
 WHERE Empresa = '01' AND Almacen = 'ALM05' AND Producto = 'MP.68252518AA' 
 AND Fecha = '2025-06-17 03:35:36'
+
+select top 10*from GC_M_Colectores order by pkid desc
+insert GC_M_Colectores (Empresa,Almacen,Ubicacion,Producto,CodigoBD,ExisteBD,Cantidad,Fecha,idProducto)
+values                 ('FREDDY','ALM09','Prueba 2','GAA.BS020504P','GAA.BS020504P','SI',2,'6/09/2025 09:53:14', NULL)
+
+select top 200 *from GC_M_Colectores order by pkid desc
+
+
 
 
  

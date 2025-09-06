@@ -232,105 +232,7 @@ left join Empleado emp on emp.PKID=PER.PKID
 left join TipoCp tcpv on tcpv.PKID=cpv.IDTipoCp
 left join CptoOperacion cpo on cpo.PKID=cpv.IDCptoOperacion
 left join CpCobrarPagar cpp on cpp.PKID=cpven.PKID
-where PER.Codigo in ( '20480092555',
-'20480311613',
-'20513883561',
-'20487743772',
-'20475318961',
-'20549871535',
-'20539619919',
-'20529163054',
-'20470844150',
-'20486311933',
-'20101341616',
-'20487227413',
-'20480288701',
-'20102037597',
-'20454785721',
-'20477839844',
-'20393829894',
-'20485863509',
-'20498147713',
-'20480206313',
-'20504439144',
-'20529754419',
-'20489965667',
-'20447394023',
-'20455119449',
-'20481247803',
-'20481647496',
-'20101770657',
-'20534320770',
-'20493587090',
-'20487278671',
-'20455715564',
-'20412159501',
-'20525307418',
-'20477857150',
-'20452332940',
-'10414585405',
-'10401982651',
-'10430003955',
-'10081910729',
-'10023819274',
-'10205489873',
-'10409569787',
-'10010239449',
-'10095139529',
-'10414119358',
-'10294348439',
-'10012210197',
-'10405431799',
-'10482790467',
-'10474475927',
-'10011515342',
-'10198404824',
-'10181721761',
-'10204075251',
-'10316287153',
-'10013429672',
-'10097906519',
-'10040791413',
-'10436260526',
-'10406222751',
-'10442512898',
-'10408222279',
-'10414134659',
-'10000817487',
-'10086833269',
-'10210827451',
-'10451872384',
-'10013042867',
-'10012306496',
-'10040310229',
-'10400241266',
-'10205276373',
-'10427336447',
-'10070688218',
-'10402604251',
-'10296515171',
-'10441716937',
-'10211161405',
-'10206426158',
-'10735115311',
-'10097689763',
-'10311241996',
-'10326448082',
-'10277052968',
-'10316538164',
-'10077099587',
-'10400900481',
-'10471243952',
-'10282892877',
-'10210679133',
-'10092838884',
-'10254589905',
-'10419534965',
-'10097386507',
-'10199201005',
-'10403608993',
-'10095456893',
-'10162848050',
+where PER.Codigo in ( 
 '20494221218')
 
 -- Para manejar cualquier caso no listado explícitamente
@@ -414,16 +316,75 @@ left join Empleado emp on emp.PKID=PER.PKID
 left join TipoCp tcpv on tcpv.PKID=cpv.IDTipoCp
 LEFT JOIN NotaCredito NC on NC.PKID=cpv.PKID
 left join notadebito ND on ND.PKID=cpv.PKID
-left join CpInventarioSalida invsa on invsa.PKID=cpv.PKID
+left join CpInventarioSalida invsa on invsa.PKID=cpv.PKID 
 --LEFT JOIN CpVenta cpven on cpven.PKID=cpv.PKID
-where
-cpv.NumCp in ('T001-00008528','T001-00008531','T001-00008532')
-SELECT*FROM Persona WHERE Codigo='10469233346'
+where  --T001-9385  T001-9387
+cpv.NumCp in ('T001-00009404')
+SELECT*FROM Persona WHERE Codigo='10004073423'
+SELECT*FROM Persona WHERE Codigo='20519828198'
+select*from Cp where NumCp='814-0053652'
+select*from Pedido where PKID=862880
+select*from Freddy.PedidoFreddy where PKID=862880
+select*from ItemCp where IDCp=862880
+select*from ItemPedido where PKID=5186916
+select *from ItemProducto where PKID=5186916
+update ItemProducto set Peso='1.0000000' where PKID=5187127 
+update Pedido set DireccionEntrega='AV.JORGE BASADRE GROHOMANN NRO.SN INT. 49 ASC. ASOC.DE COMERCIANTES CRISTINA VILDOSO' where PKID=862880
+update Pedido set DireccionEntrega=Direccion where PKID=862678 --MZ.M LT.22 ASOC.RAMON COPAJA   - AV. MARISCAL CACERES NRO. 295
+select*from Cliente where PKID=860
+select*from DireccionCliente where PKID=6616
+select top 10*from Direccion where PKID=6616--6616
 select*from Cp where PKID=850502
-select*from CpInventarioSalida where PKID=850502
-update CpInventarioSalida set IDDireccionEntrega=6509 where PKID=850502
-update CpInventarioSalida set DireccionEntrega='AV. LUNA PIZARRO NRO. 627 - 629' where PKID=850502
+select top 2*from CpInventario where IDCp=863664---0.004000
+update CpInventario set Peso='4.0000000' where IDCp=863664---0.004000
+select*from CpInventarioSalida where PKID=863664
+update CpInventarioSalida set IDDireccionEntrega=6616 where PKID=863664
+update CpInventarioSalida set DireccionEntrega='AV.JORGE BASADRE GROHOMANN NRO.SN INT. 49 ASC. ASOC.DE COMERCIANTES CRISTINA VILDOSO' where PKID=863664
 
+select top 10*from Freddy.EmpresaTransporte 
+where PKID=167
+insert Freddy.EmpresaTransporte (PKID,Campo)
+values (167,'')
+SELECT name, is_instead_of_trigger, is_disabled 
+FROM sys.triggers 
+WHERE parent_id = OBJECT_ID('Pedido');
+
+sp_helptext 'Pedido_DireccionEntrega';
+
+-----------------------------------
+--1. Deshabilitar el trigger temporalmente
+-- Deshabilitar el trigger
+DISABLE TRIGGER Pedido_DireccionEntrega ON Pedido;
+GO
+
+-- Hacer tu update forzado
+UPDATE Pedido 
+SET IDDireccionEntrega=6616
+WHERE PKID = 862880;
+GO
+
+-- Volver a habilitar el trigger
+ENABLE TRIGGER Pedido_DireccionEntrega ON Pedido;
+----------------------------------------------------------
+SELECT name, is_instead_of_trigger, is_disabled
+FROM sys.triggers
+WHERE parent_id = OBJECT_ID('CpInventarioSalida');
+sp_helptext 'CpInventarioSalida_DireccionEntrega';
+
+-- Deshabilitar temporalmente el trigger
+DISABLE TRIGGER CpInventarioSalida_DireccionEntrega ON CpInventarioSalida;
+GO
+
+-- Hacer el update
+UPDATE CpInventarioSalida
+SET IDDireccionEntrega = 6616
+WHERE PKID = 863664;
+GO
+
+-- Rehabilitar el trigger
+ENABLE TRIGGER CpInventarioSalida_DireccionEntrega ON CpInventarioSalida;
+
+-------------------------------------------------
 select*from CpInventarioSalida where PKID=850473
 select*from CpInventarioSalida where PKID=850502
 

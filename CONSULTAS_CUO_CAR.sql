@@ -56,7 +56,7 @@ HAVING
     OR MAX(CodigoOperacion) = '1-05-2025-0000277'
 ORDER BY CONVERT(date, FechaOperacion)
 
----------
+-------------------------------------------------------------
 SELECT*FROM Cp WHERE NumCp='F001-0000079' and PKID=3013518
 select*from VoucherContable where PKID=3013518
 update  VoucherContable set IDPeriodo=100000498 where PKID=3013518
@@ -247,7 +247,7 @@ DocIdentidad
 00000000
 
 ---------------------REGISTRO DE COMPRAS------------------------------
-
+SELECT * FROM vrpteRegistroCompras2010
 SELECT * FROM vrpteRegistroCompras2010 where ZonaCodigo='1-03-2025-0000260'
 SELECT*FROM Cp where NumCpContable='1-03-2025-0000260'
 select*from CpCobrarPagar where PKID=2970382

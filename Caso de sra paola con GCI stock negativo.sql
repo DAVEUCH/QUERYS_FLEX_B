@@ -47,7 +47,9 @@ select*from ProductoServicio where Codigo='EI.GT-231'  AND PKID=26366
 
 select top 10 *from ProductoAlmacen where StockPorRecibir < 0
 
-select *from ProductoAlmacen where IDProducto=25619
+select top 10 *from ProductoServicio where Codigo='ZM.ZM-4699'
+
+select *from ProductoAlmacen where IDProducto=9618
 
 --where IDProducto=8110
 
@@ -84,18 +86,20 @@ select*from CptoOperacion where PKID=1826
 --update ProductoAlmacen set StockPorEntregar=0 where  PKID=170120
 
 
+select top 10 *from ProductoServicio where Codigo IN ('PX.80697')
 
-814-0035315
-814-0045643
-814-0049360
+select *from ProductoAlmacen where IDProducto IN (21114)
+UPDATE ProductoAlmacen SET  StockPorEntregar=26 WHERE PKID=591059
 	select al.PKID,
 	su.Nombre,al.Nombre as Nom_alma,StockFisico,StockContable,StockPorEntregar,StockPorRecibir, al.Codigo
 	from vrptStockAlmacen  alm
 	left join Sucursal su on su.PKID=alm.IDSucursal
 	left join Almacen al on alm.IDAlmacen=al.PKID
-	where IDProducto=58731 and IDAlmacen in(2,3,4,5,6,7,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,48,50,51,133,155)
+	where IDProducto IN (21114)
+ and IDAlmacen in(7,5)
 
---SELECT*FROM ProductoAlmacen WHERE IDProducto=28001
+SELECT top 1*FROM vrptStockAlmacen
+
 
 SELECT
 pa.PKID as pkid_pa,
